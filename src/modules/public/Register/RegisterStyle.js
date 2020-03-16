@@ -24,10 +24,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(8, 4, 3, 4)
   },
   media: {
-    color: "#fff",
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
     padding: theme.spacing(3),
+    color: "#fff",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   icon: {
-    backgroundImage: "linear-gradient(180deg, #66bb6a 0%, #43a047 100%);",
+    backgroundImage: "linear-gradient(180deg, #ffa726 0%, #f57c00 100%)",
     color: "#fff",
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(1),
@@ -47,8 +47,18 @@ const useStyles = makeStyles(theme => ({
     width: 64,
     fontSize: 32
   },
+  registerForm: {
+    marginTop: theme.spacing(3)
+  },
   divider: {
     margin: theme.spacing(2, 0)
+  },
+  person: {
+    marginTop: theme.spacing(2),
+    display: "flex"
+  },
+  avatar: {
+    marginRight: theme.spacing(2)
   }
 }));
 

@@ -1,5 +1,6 @@
 import React from "react";
+import RegisterView from "./RegisterView";
 
-const Register = () => <span>Register</span>;
+const Register = () => <RegisterView />;
 
 export default Register;
