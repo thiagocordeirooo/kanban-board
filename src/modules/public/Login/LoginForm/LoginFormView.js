@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import React from "react";
 import useStyles from "./LoginFormStyle";
 
-const LoginFormView = () => {
+const LoginFormView = ({ handleLogin }) => {
   const classes = useStyles();
 
   return (
@@ -13,7 +13,7 @@ const LoginFormView = () => {
         <TextField type="password" fullWidth label="Senha" name="password" variant="outlined" />
       </div>
 
-      <Button className={classes.submitButton} color="secondary" size="large" type="submit" variant="contained">
+      <Button className={classes.submitButton} color="secondary" size="large" onClick={handleLogin} variant="contained">
         Entrar
       </Button>
     </form>

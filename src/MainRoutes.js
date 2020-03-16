@@ -1,12 +1,11 @@
 import React from "react";
-
-import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
-
-// import PageNotFound from "_common/components/PageNotFound";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import LazyLoadingComponent from "_common/components/LazyLoadingComponent";
+import PrivateRoute from "_common/components/PrivateRoute/PrivateRoute";
 
 const PageNotFound = React.lazy(() => import("_common/components/PageNotFound"));
 const PublicRoutes = React.lazy(() => import("modules/public/PublicRoutes"));
+const BoardRoutes = React.lazy(() => import("modules/board/BoardRoutes"));
 
 const MainRoutes = () => {
   return (
@@ -14,7 +13,8 @@ const MainRoutes = () => {
       <Switch>
         <Redirect exact from="/" to="/board" />
 
-        <Route component={() => <span>Board</span>} path="/board" />
+        {/* private routes */}
+        <PrivateRoute component={LazyLoadingComponent(BoardRoutes)} path="/board" />
 
         {/* public routes */}
         <Route component={LazyLoadingComponent(PublicRoutes)} path="/public" />
