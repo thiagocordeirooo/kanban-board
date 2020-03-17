@@ -1,14 +1,17 @@
-import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import LoginFormView from "./LoginFormView";
-import { useFormik } from "formik";
-
-import { addAuthorization } from "_common/services/Api";
-
-import * as Yup from "yup";
 import axios from "axios";
+import { useFormik } from "formik";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
+import createAction from "store/createAction";
+import { AUTH_SET_USER } from "store/reducers/auth";
+import { SNACKBAR_OPEN } from "store/reducers/snackbar";
+import * as Yup from "yup";
+import { addAuthorizationApi } from "_common/services/Api";
+import LoginFormView from "./LoginFormView";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 
@@ -16,14 +19,16 @@ const LoginForm = () => {
     try {
       const { data } = await axios.post("/auth/login", values);
       localStorage.setItem("auth", JSON.stringify(data));
-      addAuthorization();
+      addAuthorizationApi();
+
+      dispatch(createAction(AUTH_SET_USER, data));
 
       let { from } = location.state || { from: { pathname: "/board" } };
       history.replace(from);
     } catch ({ response }) {
       const { data } = response;
       if (data.message) {
-        alert(data.message);
+        dispatch(createAction(SNACKBAR_OPEN, data.message));
       }
     }
   };

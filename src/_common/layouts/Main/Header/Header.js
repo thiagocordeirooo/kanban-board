@@ -1,42 +1,29 @@
-import AppBar from "@material-ui/core/AppBar";
-import IconButton from "@material-ui/core/IconButton";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import ExitToApp from "@material-ui/icons/ExitToApp";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import createAction from "store/createAction";
+import { AUTH_REMOVE_USER } from "store/reducers/auth";
+import HeaderView from "./HeaderView";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const authRedux = useSelector(({ auth }) => auth);
   const location = useLocation();
   const history = useHistory();
-
-  let { from } = location.state || { from: { pathname: "/" } };
 
   const handleLogoff = () => {
     if (window.confirm("Tem certeza que deseja sair da aplicação?")) {
       localStorage.removeItem("auth");
+
+      dispatch(createAction(AUTH_REMOVE_USER));
+
+      let { from } = location.state || { from: { pathname: "/" } };
       history.replace(from);
     }
   };
 
-  return (
-    <AppBar position="static">
-      <Toolbar variant="dense">
-        <Typography variant="h6" color="inherit">
-          Kanban Board App
-        </Typography>
-
-        <IconButton
-          onClick={handleLogoff}
-          style={{ marginLeft: "auto" }}
-          edge="start"
-          color="inherit"
-          aria-label="menu">
-          <ExitToApp />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  );
+  return <HeaderView userName={authRedux.user.name} handleLogoff={handleLogoff} />;
 };
 
 export default Header;

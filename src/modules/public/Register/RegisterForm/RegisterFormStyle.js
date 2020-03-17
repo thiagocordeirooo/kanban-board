@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme => ({
   },
   fields: {
     margin: theme.spacing(-1),
+    marginBottom: theme.spacing(2),
     display: "flex",
     flexWrap: "wrap",
     "& > *": {
@@ -13,8 +14,7 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1)
     }
   },
-  submitButton: {
-    marginTop: theme.spacing(2),
+  buttonFullWidth: {
     width: "100%"
   }
 }));

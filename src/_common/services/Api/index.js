@@ -5,7 +5,7 @@ export function iniApi() {
   // addAuthorization();
 }
 
-export function addAuthorization() {
+export function addAuthorizationApi() {
   try {
     let authStorage = localStorage.getItem("auth");
 
