@@ -3,17 +3,38 @@ import TextField from "@material-ui/core/TextField";
 import React from "react";
 import useStyles from "./LoginFormStyle";
 
-const LoginFormView = ({ handleLogin }) => {
+const LoginFormView = ({ loginForm }) => {
   const classes = useStyles();
 
   return (
-    <form className={classes.root}>
+    <form onSubmit={loginForm.handleSubmit} className={classes.root}>
       <div className={classes.fields}>
-        <TextField fullWidth label="Email" name="email" variant="outlined" />
-        <TextField type="password" fullWidth label="Senha" name="password" variant="outlined" />
+        <TextField
+          fullWidth
+          label="Email"
+          name="email"
+          variant="outlined"
+          value={loginForm.values.email}
+          onChange={loginForm.handleChange}
+          onBlur={loginForm.handleBlur}
+          error={!!loginForm.errors.email}
+          helperText={loginForm.errors.email}
+        />
+        <TextField
+          type="password"
+          fullWidth
+          label="Senha"
+          name="password"
+          variant="outlined"
+          value={loginForm.values.password}
+          onChange={loginForm.handleChange}
+          onBlur={loginForm.handleBlur}
+          error={!!loginForm.errors.password}
+          helperText={loginForm.errors.password}
+        />
       </div>
 
-      <Button className={classes.submitButton} color="secondary" size="large" onClick={handleLogin} variant="contained">
+      <Button type="submit" className={classes.submitButton} color="secondary" size="large" variant="contained">
         Entrar
       </Button>
     </form>
