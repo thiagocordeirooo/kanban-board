@@ -3,18 +3,29 @@ import { useHistory, useLocation } from "react-router-dom";
 import LoginFormView from "./LoginFormView";
 import { useFormik } from "formik";
 
+import { addAuthorization } from "_common/services/Api";
+
 import * as Yup from "yup";
+import axios from "axios";
 
 const LoginForm = () => {
   const location = useLocation();
   const history = useHistory();
 
-  let { from } = location.state || { from: { pathname: "/board" } };
+  const handleLogin = async values => {
+    try {
+      const { data } = await axios.post("/auth/login", values);
+      localStorage.setItem("auth", JSON.stringify(data));
+      addAuthorization();
 
-  const handleLogin = values => {
-    alert(JSON.stringify(values, null, 2));
-    // localStorage.setItem("auth", "{}");
-    // history.replace(from);
+      let { from } = location.state || { from: { pathname: "/board" } };
+      history.replace(from);
+    } catch ({ response }) {
+      const { data } = response;
+      if (data.message) {
+        alert(data.message);
+      }
+    }
   };
 
   const loginForm = useFormik({

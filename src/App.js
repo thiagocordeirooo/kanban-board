@@ -1,10 +1,15 @@
 import { ThemeProvider } from "@material-ui/styles";
-import React from "react";
+import React, { useEffect } from "react";
+import { iniApi } from "_common/services/Api";
 import MainRoutes from "./MainRoutes";
 import theme from "./theme";
 
 function App() {
-  window["theme"] = theme;
+  useEffect(() => {
+    window["theme"] = theme;
+
+    iniApi();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
