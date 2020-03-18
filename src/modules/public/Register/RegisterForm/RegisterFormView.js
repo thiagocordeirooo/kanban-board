@@ -57,18 +57,13 @@ const RegisterFormView = ({ registerForm }) => {
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
-          <Button
-            className={classes.buttonFullWidth}
-            color="default"
-            size="large"
-            variant="contained"
-            onClick={registerForm.handleReset}>
+          <Button fullWidth color="default" size="large" variant="contained" onClick={registerForm.handleReset}>
             Limpar
           </Button>
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <Button type="submit" className={classes.buttonFullWidth} color="secondary" size="large" variant="contained">
+          <Button type="submit" fullWidth color="secondary" size="large" variant="contained">
             Cadastrar
           </Button>
         </Grid>
