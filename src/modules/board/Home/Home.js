@@ -1,12 +1,8 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import HomeView from "./HomeView";
 
 const Home = () => {
-  return (
-    <Typography variant="h2" align="center" noWrap>
-      Home Board
-    </Typography>
-  );
+  return <HomeView />;
 };
 
 export default Home;
