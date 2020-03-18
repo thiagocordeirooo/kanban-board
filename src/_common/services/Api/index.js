@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function iniApi() {
   axios.defaults.baseURL = "http://localhost:3333";
-  // addAuthorization();
+  addAuthorizationApi();
 }
 
 export function addAuthorizationApi() {
@@ -15,7 +15,7 @@ export function addAuthorizationApi() {
       const { access_token } = auth;
 
       if (access_token) {
-        axios.defaults.headers.common["Authorization"] = `bearer ${access_token}`;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
       }
     }
   } catch {}

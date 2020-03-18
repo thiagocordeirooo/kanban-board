@@ -1,19 +1,28 @@
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 import PageTitle from "_common/components/PageTitle";
-import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
+import Lane from "./Lane";
+import useStyles from "./HomeStyle";
 
-const HomeView = () => {
+const HomeView = ({ loading, lanes }) => {
+  const classes = useStyles();
   return (
     <>
       <PageTitle
         title="Board"
         primaryAction={
-          <IconButton color="primary">
+          <Fab color="primary">
             <AddIcon />
-          </IconButton>
+          </Fab>
         }
       />
+
+      <div className={classes.content}>
+        {lanes.map(lane => (
+          <Lane key={lane.id} lane={lane} />
+        ))}
+      </div>
     </>
   );
 };
