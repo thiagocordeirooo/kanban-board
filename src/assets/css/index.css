@@ -13,9 +13,8 @@ html {
 body {
   background-color: #f7f7f7;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -24,4 +23,8 @@ a {
 
 #root {
   height: 100%;
+}
+
+form * {
+  margin: 8px 0;
 }

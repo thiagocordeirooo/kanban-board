@@ -1,8 +1,8 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
-  content: {
-    display: "flex"
+  root: {
+    marginBottom: theme.spacing(1)
   }
 }));
 

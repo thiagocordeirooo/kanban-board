@@ -4,6 +4,7 @@ import React from "react";
 import PageTitle from "_common/components/PageTitle";
 import Lane from "./Lane";
 import useStyles from "./HomeStyle";
+import TaskDialog from "./TaskDialog";
 
 const HomeView = ({ loading, lanes }) => {
   const classes = useStyles();
@@ -23,6 +24,8 @@ const HomeView = ({ loading, lanes }) => {
           <Lane key={lane.id} lane={lane} />
         ))}
       </div>
+
+      <TaskDialog />
     </>
   );
 };
