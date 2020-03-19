@@ -5,7 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import createAction from "store/createAction";
 
-import { BOARD_SET_LOADING, BOARD_SET_LANES, BOARD_SET_TASKS_LANE } from "store/reducers/board";
+import { BOARD_SET_LOADING, BOARD_SET_LANES, BOARD_SET_TASKS_LANE, BOARD_RESET } from "store/reducers/board";
 import { SNACKBAR_OPEN_SUCCESS } from "store/reducers/snackbar";
 
 const Home = () => {
@@ -13,6 +13,7 @@ const Home = () => {
   const boardRedux = useSelector(({ board }) => board);
 
   const [newLaneDialogOpen, setNewLaneDialogOpen] = useState(false);
+  const [laneEdit, setLaneEdit] = useState(null);
 
   useEffect(() => {
     const fetchLanes = async () => {
@@ -23,15 +24,21 @@ const Home = () => {
     };
 
     fetchLanes();
+
+    return () => dispatch(createAction(BOARD_RESET));
   }, [dispatch]);
 
   const handleDragEnd = async event => {
     const { source, destination } = event;
 
+    if (!destination) {
+      return;
+    }
+
     const { lanes } = boardRedux;
 
-    const sourceLane = lanes.find(({ id }) => id === source.droppableId);
-    const destinationLane = lanes.find(({ id }) => id === destination.droppableId);
+    const sourceLane = lanes.find(({ id }) => id === +source.droppableId);
+    const destinationLane = lanes.find(({ id }) => id === +destination.droppableId);
 
     const [removedTask] = sourceLane.tasks.splice(source.index, 1);
 
@@ -46,7 +53,15 @@ const Home = () => {
     dispatch(createAction(SNACKBAR_OPEN_SUCCESS));
   };
 
-  const handleOpenNewLaneDialog = () => {
+  const handleOpenNewLaneDialog = laneId => {
+    if (laneId) {
+      const { lanes } = boardRedux;
+      const { tasks, ...rest } = lanes.find(({ id }) => id === laneId);
+      setLaneEdit(rest);
+    } else {
+      setLaneEdit(null);
+    }
+
     setNewLaneDialogOpen(true);
   };
 
@@ -58,7 +73,7 @@ const Home = () => {
     <HomeView
       loading={boardRedux.loading}
       lanes={boardRedux.lanes}
-      {...{ handleDragEnd, newLaneDialogOpen, handleOpenNewLaneDialog, handleCloseNewLaneDialog }}
+      {...{ handleDragEnd, laneEdit, newLaneDialogOpen, handleOpenNewLaneDialog, handleCloseNewLaneDialog }}
     />
   );
 };

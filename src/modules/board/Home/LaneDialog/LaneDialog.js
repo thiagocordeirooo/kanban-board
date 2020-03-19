@@ -3,24 +3,33 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import createAction from "store/createAction";
-import { BOARD_ADD_LANE } from "store/reducers/board";
+import { BOARD_ADD_LANE, BOARD_UPDATE_LANE_NAME } from "store/reducers/board";
 import { SNACKBAR_OPEN_SUCCESS } from "store/reducers/snackbar";
 import * as Yup from "yup";
 import LaneDialogView from "./LaneDialogView";
 
-const LaneDialog = ({ open, handleClose }) => {
+const LaneDialog = ({ laneEdit, handleClose }) => {
   const dispatch = useDispatch();
 
   const handleSave = async values => {
-    const { data } = await axios.post("/lanes", values);
+    let resp = {};
 
-    dispatch(createAction(BOARD_ADD_LANE, data));
+    if (values.id) {
+      resp = await axios.put(`/lanes/${values.id}`, values);
+    } else {
+      resp = await axios.post("/lanes", values);
+    }
+
     dispatch(createAction(SNACKBAR_OPEN_SUCCESS));
-    handleClose();
+
+    setTimeout(() => {
+      dispatch(createAction(values.id ? BOARD_UPDATE_LANE_NAME : BOARD_ADD_LANE, resp.data));
+      handleClose();
+    }, 500);
   };
 
   const formLane = useFormik({
-    initialValues: { name: "" },
+    initialValues: laneEdit || { name: "" },
     validationSchema: Yup.object().shape({
       name: Yup.string()
         .max(20)
@@ -29,6 +38,6 @@ const LaneDialog = ({ open, handleClose }) => {
     onSubmit: handleSave
   });
 
-  return <LaneDialogView {...{ open, handleClose, formLane }} />;
+  return <LaneDialogView {...{ handleClose, formLane }} />;
 };
 export default LaneDialog;

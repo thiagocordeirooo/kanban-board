@@ -6,10 +6,10 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 import React from "react";
 
-const LaneDialogView = ({ open, handleClose, formLane }) => {
+const LaneDialogView = ({ handleClose, formLane }) => {
   return (
-    <Dialog fullWidth maxWidth="xs" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">Adicionar Raia</DialogTitle>
+    <Dialog fullWidth maxWidth="xs" open onClose={handleClose} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title">{formLane.values.id ? "Editar" : "Adicionar"} Raia</DialogTitle>
       <form onSubmit={formLane.handleSubmit}>
         <DialogContent>
           <TextField

@@ -5,18 +5,13 @@ import { BOARD_SET_TASKS_LANE, BOARD_OPEN_TASK_DIALOG } from "store/reducers/boa
 import { useDispatch } from "react-redux";
 import createAction from "store/createAction";
 
-const Lane = ({ lane, provided, snapshot }) => {
+const Lane = ({ lane, provided, handleOpenNewLaneDialog }) => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTasks = async () => {
       const { data } = await axios.get(`/lanes/${lane.id}/tasks`);
       dispatch(createAction(BOARD_SET_TASKS_LANE, { laneId: lane.id, tasks: data }));
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
     };
 
     fetchTasks();
@@ -26,7 +21,7 @@ const Lane = ({ lane, provided, snapshot }) => {
     dispatch(createAction(BOARD_OPEN_TASK_DIALOG, { laneId: lane.id }));
   };
 
-  return <LaneView {...{ loading, lane, handleAddTask, provided, snapshot }} />;
+  return <LaneView {...{ lane, handleAddTask, provided, handleOpenNewLaneDialog }} />;
 };
 
 export default Lane;

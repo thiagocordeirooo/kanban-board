@@ -12,6 +12,7 @@ const HomeView = ({
   loading,
   lanes,
   handleDragEnd,
+  laneEdit,
   newLaneDialogOpen,
   handleOpenNewLaneDialog,
   handleCloseNewLaneDialog
@@ -22,7 +23,7 @@ const HomeView = ({
       <PageTitle
         title="Board"
         primaryAction={
-          <Fab color="primary" onClick={handleOpenNewLaneDialog}>
+          <Fab color="primary" onClick={() => handleOpenNewLaneDialog()}>
             <AddIcon />
           </Fab>
         }
@@ -31,15 +32,15 @@ const HomeView = ({
       <div className={classes.content}>
         <DragDropContext onDragEnd={handleDragEnd}>
           {lanes.map(lane => (
-            <Droppable droppableId={lane.id} key={lane.id}>
-              {(provided, snapshot) => <Lane lane={lane} provided={provided} snapshot={snapshot} />}
+            <Droppable droppableId={lane.id.toString()} key={lane.id.toString()}>
+              {provided => <Lane lane={lane} provided={provided} handleOpenNewLaneDialog={handleOpenNewLaneDialog} />}
             </Droppable>
           ))}
         </DragDropContext>
       </div>
 
       <TaskDialog />
-      <LaneDialog open={newLaneDialogOpen} handleClose={handleCloseNewLaneDialog} />
+      {newLaneDialogOpen && <LaneDialog laneEdit={laneEdit} handleClose={handleCloseNewLaneDialog} />}
     </>
   );
 };

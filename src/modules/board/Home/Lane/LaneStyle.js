@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[4],
     marginBottom: theme.spacing(2)
+  },
+  laneTitle: {
+    cursor: "pointer"
   }
 }));
 

@@ -5,13 +5,13 @@ import Task from "./Task";
 import AddIcon from "@material-ui/icons/Add";
 import { Draggable } from "react-beautiful-dnd";
 
-const LaneView = ({ loading, lane, handleAddTask, provided, snapshot }) => {
+const LaneView = ({ lane, handleAddTask, provided, handleOpenNewLaneDialog }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root} ref={provided.innerRef}>
       <Grid container justify="space-between" alignItems="center" className={classes.laneHeader}>
-        <Typography variant="h6">
+        <Typography className={classes.laneTitle} variant="h6" onClick={() => handleOpenNewLaneDialog(lane.id)}>
           {lane.name}
           {!!lane.tasks && ` (${lane.tasks.length})`}
         </Typography>
@@ -22,18 +22,17 @@ const LaneView = ({ loading, lane, handleAddTask, provided, snapshot }) => {
           </IconButton>
         </Tooltip>
       </Grid>
-      {/* <LaneHeader /> */}
 
       <div style={{ padding: "0 16px" }}>
-        {loading && (
+        {!lane.tasks && (
           <Grid container justify="center">
             <CircularProgress />
           </Grid>
         )}
 
-        {!loading &&
+        {lane.tasks &&
           lane.tasks.map((task, index) => (
-            <Draggable key={task.id} index={index} draggableId={task.id}>
+            <Draggable key={task.id} index={index} draggableId={task.id.toString()}>
               {(provided, snapshot) => <Task task={task} provided={provided} snapshot={snapshot} />}
             </Draggable>
           ))}

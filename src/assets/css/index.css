@@ -22,8 +22,7 @@ a {
 }
 
 #root {
-  height: calc(100% - 48px);
-  margin-top: 48px;
+  height: 100%;
 }
 
 form * {
