@@ -4,7 +4,8 @@ import Header from "./Header";
 
 const useStyles = makeStyles(theme => ({
   main: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
+    height: "100%"
   }
 }));
 

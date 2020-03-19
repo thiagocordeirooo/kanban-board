@@ -2,7 +2,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: theme.spacing(37),
+    width: theme.spacing(50),
+    minWidth: theme.spacing(50),
     margin: theme.spacing(0, 1)
   },
   laneHeader: {

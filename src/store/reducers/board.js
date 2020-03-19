@@ -3,6 +3,7 @@ export const BOARD_SET_LANES = "BOARD/SET_LANES";
 export const BOARD_SET_TASKS_LANE = "BOARD/SET_TASKS_LANE";
 
 export const BOARD_ADD_TASKS_LANE = "BOARD/ADD_TASKS_LANE";
+export const BOARD_ADD_LANE = "BOARD/ADD_LANE";
 
 export const BOARD_OPEN_TASK_DIALOG = "BOARD/OPEN_TASK_DIALOG";
 export const BOARD_CLOSE_TASK_DIALOG = "BOARD/CLOSE_TASK_DIALOG";
@@ -37,6 +38,8 @@ const Board = (state = INITIAL_STATE, action) => {
 
       return { ...state, lanes };
     }
+    case BOARD_ADD_LANE:
+      return { ...state, lanes: [...state.lanes, ...action.payload] };
     case BOARD_OPEN_TASK_DIALOG: {
       const { laneId, taskEdit } = action.payload;
       return { ...state, taskDialog: { ...state.taskDialog, open: true, laneId, taskEdit } };

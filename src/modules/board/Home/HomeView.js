@@ -1,31 +1,45 @@
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import PageTitle from "_common/components/PageTitle";
-import Lane from "./Lane";
 import useStyles from "./HomeStyle";
+import Lane from "./Lane";
+import LaneDialog from "./LaneDialog";
 import TaskDialog from "./TaskDialog";
 
-const HomeView = ({ loading, lanes }) => {
+const HomeView = ({
+  loading,
+  lanes,
+  handleDragEnd,
+  newLaneDialogOpen,
+  handleOpenNewLaneDialog,
+  handleCloseNewLaneDialog
+}) => {
   const classes = useStyles();
   return (
     <>
       <PageTitle
         title="Board"
         primaryAction={
-          <Fab color="primary">
+          <Fab color="primary" onClick={handleOpenNewLaneDialog}>
             <AddIcon />
           </Fab>
         }
       />
 
       <div className={classes.content}>
-        {lanes.map(lane => (
-          <Lane key={lane.id} lane={lane} />
-        ))}
+        <DragDropContext onDragEnd={handleDragEnd}>
+          {lanes.map(lane => (
+            <Droppable droppableId={lane.id} key={lane.id}>
+              {(provided, snapshot) => <Lane lane={lane} provided={provided} snapshot={snapshot} />}
+            </Droppable>
+          ))}
+        </DragDropContext>
       </div>
 
       <TaskDialog />
+      <LaneDialog open={newLaneDialogOpen} handleClose={handleCloseNewLaneDialog} />
     </>
   );
 };

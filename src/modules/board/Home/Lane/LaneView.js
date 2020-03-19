@@ -3,14 +3,18 @@ import { Typography, CircularProgress, IconButton, Grid, Tooltip } from "@materi
 import useStyles from "./LaneStyle";
 import Task from "./Task";
 import AddIcon from "@material-ui/icons/Add";
+import { Draggable } from "react-beautiful-dnd";
 
-const LaneView = ({ loading, lane, handleAddTask }) => {
+const LaneView = ({ loading, lane, handleAddTask, provided, snapshot }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} ref={provided.innerRef}>
       <Grid container justify="space-between" alignItems="center" className={classes.laneHeader}>
-        <Typography variant="h6">{lane.name}</Typography>
+        <Typography variant="h6">
+          {lane.name}
+          {!!lane.tasks && ` (${lane.tasks.length})`}
+        </Typography>
 
         <Tooltip title="Adicionar tarefa">
           <IconButton color="inherit" aria-label="adicionar" onClick={handleAddTask}>
@@ -20,10 +24,19 @@ const LaneView = ({ loading, lane, handleAddTask }) => {
       </Grid>
       {/* <LaneHeader /> */}
 
-      <div>
-        {loading && <CircularProgress />}
+      <div style={{ padding: "0 16px" }}>
+        {loading && (
+          <Grid container justify="center">
+            <CircularProgress />
+          </Grid>
+        )}
 
-        {!loading && lane.tasks.map(task => <Task key={task.id} task={task} />)}
+        {!loading &&
+          lane.tasks.map((task, index) => (
+            <Draggable key={task.id} index={index} draggableId={task.id}>
+              {(provided, snapshot) => <Task task={task} provided={provided} snapshot={snapshot} />}
+            </Draggable>
+          ))}
       </div>
     </div>
   );

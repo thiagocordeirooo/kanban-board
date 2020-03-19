@@ -8,7 +8,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 const Header = ({ userName, handleLogoff }) => {
   return (
-    <AppBar position="static">
+    <AppBar>
       <Toolbar variant="dense">
         <Typography variant="h6" color="inherit">
           Kanban Board App
