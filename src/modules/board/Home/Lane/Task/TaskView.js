@@ -3,10 +3,15 @@ import EditIcon from "@material-ui/icons/Edit";
 import React from "react";
 import useStyles from "./TaskStyle";
 
-const TaskView = ({ task }) => {
+const TaskView = ({ task, provided, snapshot }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
+    <Card
+      ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      className={classes.root}
+      style={{ ...provided.draggableProps.style }}>
       <CardHeader
         title={task.name}
         action={

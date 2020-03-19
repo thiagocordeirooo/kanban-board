@@ -2,7 +2,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   content: {
-    display: "flex"
+    display: "flex",
+    overflowX: "auto"
   }
 }));
 

@@ -5,7 +5,7 @@ import { BOARD_SET_TASKS_LANE, BOARD_OPEN_TASK_DIALOG } from "store/reducers/boa
 import { useDispatch } from "react-redux";
 import createAction from "store/createAction";
 
-const Lane = ({ lane }) => {
+const Lane = ({ lane, provided, snapshot }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -26,7 +26,7 @@ const Lane = ({ lane }) => {
     dispatch(createAction(BOARD_OPEN_TASK_DIALOG, { laneId: lane.id }));
   };
 
-  return <LaneView {...{ loading, lane, handleAddTask }} />;
+  return <LaneView {...{ loading, lane, handleAddTask, provided, snapshot }} />;
 };
 
 export default Lane;
