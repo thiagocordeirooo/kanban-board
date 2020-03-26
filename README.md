@@ -1,8 +1,8 @@
 # kanban-board
 
-## Treinamento (16h) de frontend (React) ministrado para um grupo de 20 desenvolvedores.
+#### Treinamento (16h) de frontend (React) ministrado para um grupo de 20 desenvolvedores.
 
-## Neste treinamento abordamos os seguintes itens:
+#### Neste treinamento abordamos os seguintes itens:
 
 - axios
 - create-react-app
@@ -28,4 +28,4 @@
 
 ## Backend
 
-### Foi utilizado uma `fake-api` feita com [json-server](https://github.com/typicode/json-server) que pode ser baixada no repositório: https://github.com/alecsandermarques/fake-api-jwt-json-server
+##### Foi utilizado uma `fake-api` feita com [json-server](https://github.com/typicode/json-server) que pode ser baixada no repositório: https://github.com/alecsandermarques/fake-api-jwt-json-server
