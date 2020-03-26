@@ -1,4 +1,4 @@
-# kanban-board
+# :clipboard: kanban-board
 
 #### Treinamento (16h) de frontend (React) ministrado para um grupo de 20 desenvolvedores.
 
