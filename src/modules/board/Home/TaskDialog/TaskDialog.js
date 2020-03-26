@@ -1,12 +1,12 @@
+import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import createAction from "store/createAction";
-import { BOARD_CLOSE_TASK_DIALOG, BOARD_ADD_TASKS_LANE } from "store/reducers/board";
-import * as Yup from "yup";
-import TaskDialogView from "./TaskDialogView";
-import axios from "axios";
+import { BOARD_ADD_TASKS_LANE, BOARD_CLOSE_TASK_DIALOG } from "store/reducers/board";
 import { SNACKBAR_OPEN_SUCCESS } from "store/reducers/snackbar";
+import Yup from "_common/utils/YupValidator";
+import TaskDialogView from "./TaskDialogView";
 
 const TaskDialog = () => {
   const dispatch = useDispatch();

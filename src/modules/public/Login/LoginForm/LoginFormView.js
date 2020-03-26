@@ -10,6 +10,7 @@ const LoginFormView = ({ loginForm }) => {
     <form onSubmit={loginForm.handleSubmit} className={classes.root}>
       <div className={classes.fields}>
         <TextField
+          id="email"
           fullWidth
           label="Email"
           name="email"
@@ -17,10 +18,11 @@ const LoginFormView = ({ loginForm }) => {
           value={loginForm.values.email}
           onChange={loginForm.handleChange}
           onBlur={loginForm.handleBlur}
-          error={!!loginForm.errors.email}
-          helperText={loginForm.errors.email}
+          error={loginForm.touched.email && !!loginForm.errors.email}
+          helperText={loginForm.touched.email && loginForm.errors.email}
         />
         <TextField
+          id="password"
           type="password"
           fullWidth
           label="Senha"
@@ -29,8 +31,8 @@ const LoginFormView = ({ loginForm }) => {
           value={loginForm.values.password}
           onChange={loginForm.handleChange}
           onBlur={loginForm.handleBlur}
-          error={!!loginForm.errors.password}
-          helperText={loginForm.errors.password}
+          error={loginForm.touched.password && !!loginForm.errors.password}
+          helperText={loginForm.touched.password && loginForm.errors.password}
         />
       </div>
 

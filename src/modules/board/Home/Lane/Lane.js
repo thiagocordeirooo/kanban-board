@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import LaneView from "./LaneView";
 import axios from "axios";
-import { BOARD_SET_TASKS_LANE, BOARD_OPEN_TASK_DIALOG } from "store/reducers/board";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import createAction from "store/createAction";
+import { BOARD_OPEN_TASK_DIALOG, BOARD_SET_TASKS_LANE } from "store/reducers/board";
+import LaneView from "./LaneView";
 
 const Lane = ({ lane, provided, handleOpenNewLaneDialog }) => {
   const dispatch = useDispatch();

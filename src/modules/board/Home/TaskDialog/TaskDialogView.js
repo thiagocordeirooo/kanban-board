@@ -8,18 +8,21 @@ const TaskDialogView = ({ open, handleClose, taskForm }) => {
       <form onSubmit={taskForm.handleSubmit}>
         <DialogContent>
           <TextField
+            id="name"
             fullWidth
             label="Nome"
             name="name"
             variant="outlined"
+            autoFocus
             value={taskForm.values.name}
             onChange={taskForm.handleChange}
             onBlur={taskForm.handleBlur}
-            error={!!taskForm.errors.name}
-            helperText={taskForm.errors.name}
+            error={taskForm.touched.name && !!taskForm.errors.name}
+            helperText={taskForm.touched.name && taskForm.errors.name}
           />
 
           <TextField
+            id="description"
             fullWidth
             label="Descrição"
             name="description"
@@ -27,8 +30,8 @@ const TaskDialogView = ({ open, handleClose, taskForm }) => {
             value={taskForm.values.description}
             onChange={taskForm.handleChange}
             onBlur={taskForm.handleBlur}
-            error={!!taskForm.errors.description}
-            helperText={taskForm.errors.description}
+            error={taskForm.touched.description && !!taskForm.errors.description}
+            helperText={taskForm.touched.description && taskForm.errors.description}
             multiline
             rows={4}
             rowsMax={4}
@@ -36,10 +39,10 @@ const TaskDialogView = ({ open, handleClose, taskForm }) => {
         </DialogContent>
 
         <DialogActions>
-          <Button color="default" variant="contained" onClick={taskForm.handleReset}>
+          <Button color="default" size="small" variant="contained" onClick={taskForm.handleReset}>
             Limpar
           </Button>
-          <Button type="submit" color="primary" variant="contained" autoFocus>
+          <Button type="submit" size="small" color="primary" variant="contained">
             Salvar
           </Button>
         </DialogActions>

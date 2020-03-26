@@ -6,7 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import createAction from "store/createAction";
 import { AUTH_SET_USER } from "store/reducers/auth";
 import { SNACKBAR_OPEN } from "store/reducers/snackbar";
-import * as Yup from "yup";
+import Yup from "_common/utils/YupValidator";
 import { addAuthorizationApi } from "_common/services/Api";
 import LoginFormView from "./LoginFormView";
 

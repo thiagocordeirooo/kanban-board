@@ -6,8 +6,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import createAction from "store/createAction";
 import { AUTH_SET_USER } from "store/reducers/auth";
 import { SNACKBAR_OPEN, SNACKBAR_OPEN_SUCCESS } from "store/reducers/snackbar";
-import * as Yup from "yup";
 import { addAuthorizationApi } from "_common/services/Api";
+import Yup from "_common/utils/YupValidator";
 import RegisterFormView from "./RegisterFormView";
 
 const RegisterForm = () => {

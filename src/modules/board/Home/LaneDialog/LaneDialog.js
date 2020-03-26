@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import createAction from "store/createAction";
 import { BOARD_ADD_LANE, BOARD_UPDATE_LANE_NAME } from "store/reducers/board";
 import { SNACKBAR_OPEN_SUCCESS } from "store/reducers/snackbar";
-import * as Yup from "yup";
+import Yup from "_common/utils/YupValidator";
 import LaneDialogView from "./LaneDialogView";
 
 const LaneDialog = ({ laneEdit, handleClose }) => {

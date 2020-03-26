@@ -25,10 +25,10 @@ const LaneDialogView = ({ handleClose, formLane }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="default" variant="contained">
+          <Button onClick={handleClose} size="small" color="default" variant="contained">
             Cancelar
           </Button>
-          <Button type="submit" color="primary" variant="contained">
+          <Button type="submit" size="small" color="primary" variant="contained">
             Salvar
           </Button>
         </DialogActions>
